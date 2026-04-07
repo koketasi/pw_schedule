@@ -1,7 +1,7 @@
 # 画像も加えられる共有スケジュール管理アプリ
 **カード型で予定を管理できるWebアプリ**
 
-[実際のウェブアプリ](https://schedule-ecxj.onrender.com)
+[実際のウェブアプリ](https://original-schedule-app.onrender.com/)
 
 ## 制作背景
 Pythonを学ぶ過程で実際に動くものを作ると技術が身につくと思い、
@@ -9,7 +9,7 @@ Flaskを使ってスケジュール管理アプリを作りました
 
 ## 技術スタック
 - Python / Flask
-- SQLiete3
+- PostgreSQL
 - HTML / CSS / JavaScript
 
 
@@ -20,11 +20,8 @@ Flaskを使ってスケジュール管理アプリを作りました
 - 編集時はJavaScriptを使って一部画面を変えている
 
 ## 工夫したこと
-- シンプルに操作ができる設計
+- わかりやすいUI
 - 予定に画像を追加でき、一目でその予定を理解できる
 - 画像ファイルはフォルダで管理して、画像のファイル名をDBで管理することで、DBを軽量化をした
-
-## 起動方法
-pip install flask
-
-python app.py
+- JavaScriptで編集時に他の画面に切り替わらないようにした
+- 編集をするときに、元の入力を保持してその内容から変更できるようにした

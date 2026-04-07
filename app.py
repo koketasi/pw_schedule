@@ -4,7 +4,7 @@ from pathlib  import Path
 from werkzeug.utils import secure_filename
 from supabase import create_client
 import os
-
+import hashlib
 URL = os.environ.get('SUPABASE_URL')
 KEY = os.environ.get('SUPABASE_KEY')
 supabase = create_client(URL, KEY)
@@ -43,13 +43,16 @@ def index():
                     file_name=secure_filename(file.filename)
                     file.save(Path(__file__).parent /"static"/ file_name)
 
+                password=request.form.get('password')
+                if password:# noneをハッシュ化しないため
+                    key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
 
 
                 #with sqlite3.connect(database) as con:
                 #    con.execute('INSERT INTO schedule (year,month,day,hour,minute,event,file_name,file_title)VALUES(?,?,?,?,?,?,?,?)',[year,month,day,hour,miute,event,file_name,file_title])
                 #    con.commit()
                 supabase.table('schedule').insert({
-                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,'event':event,'file_name':file_name,'file_title':file_title
+                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,'event':event,'file_name':file_name,'file_title':file_title,'password':key
                   }).execute()
                 return redirect(url_for('index'))
 
@@ -87,6 +90,26 @@ def index():
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
                 return redirect(url_for('index'))
 
+            case 'search':#　パスワード検索用
+                search_password=request.form.get('password')
+                search_response=supabase.table('schedule').select('*').eq('password',search_password).execute()
+                search_row_list=search_response.data
+                search_schedule_list=[
+                    (
+                        row['year'],
+                        row['month'],
+                        row['day'],
+                        row['hour'],
+                        row['minute'],
+                        row['event'],
+                        row['file_name'],
+                        row['file_title'],
+                        row['id'],
+                        row['password']
+                    )for row in search_row_list
+                ]
+                return render_template("index.html",schedule_list=search_schedule_list)
+
 
     #con=sqlite3.connect(database)
    
@@ -105,7 +128,8 @@ def index():
             row['file_name'],
             row['file_title'],
             row['id']
-    )for row in row_list
+
+        )for row in row_list
     ]
     
   
