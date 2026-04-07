@@ -5,8 +5,8 @@ from werkzeug.utils import secure_filename
 from supabase import create_client
 import os
 import hashlib
-URL = os.environ.get('SUPABASE_URL')
-KEY = os.environ.get('SUPABASE_KEY')
+URL= os.environ.get('SUPABASE_URL')
+KEY= os.environ.get('SUPABASE_KEY')
 supabase = create_client(URL, KEY)
 
 app = Flask(__name__)
@@ -115,7 +115,7 @@ def index():
    
     #schedule_list=con.execute('SELECT year,month,day,hour,minute,event,file_name,file_title,rowid from schedule where event is not NULL').fetchall()
     #con.close()
-    response=supabase.table('schedule').select('*').not_.is_('event','null').execute()
+    response=supabase.table('schedule').select('*').not_.is_('event',None).is_('password',None).execute()
     row_list=response.data
     schedule_list=[
         (

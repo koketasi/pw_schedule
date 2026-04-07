@@ -30,6 +30,12 @@
 
 
         </form>
+            <form method="POST" action="{{url_for('index')}}">
+                <input type="hidden" name="action" value="search">
+                <input type="password" name="password" placeholder="パスワードを入力">
+            
+                <button type="submit">検索</button>
+            </form>
     </div>
 
     {%if not schedule_list %}
