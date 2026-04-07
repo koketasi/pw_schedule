@@ -12,6 +12,7 @@
 
         <form method="POST" action="{{url_for('index')}}" enctype="multipart/form-data">
             <input type="hidden" name="action" value="add">
+            <input class='password'type='password'name="password" placeholder="パスワードを入力">
             <div class="time">
                 <select size="1"  name="year"  required></select>年
                 <select size="1" name="month"  ></select>月
@@ -24,6 +25,7 @@
             <textarea class='text'  name='event' placeholder='ここに予定を入力' rows="2" required maxlength="50" ></textarea>
             <input type="file" name="name"accept='image/*' >
             <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
+        
             <button class="button_add">追加</button>
 
 
