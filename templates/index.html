@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>画像も加えられる共有スケジュール管理アプリ</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+
+    <div class="add">
+
+        <form method="POST" action="{{url_for('index')}}" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="add">
+            <div class="time">
+                <select size="1"  name="year"  required></select>年
+                <select size="1" name="month"  ></select>月
+                <select size="1" name="day"  ></select>日
+            </div>
+            <div class="time">
+                <select size="1" name="hour"  ></select>:
+                <select size="1" name="minute" ></select>
+            </div>
+            <textarea class='text'  name='event' placeholder='ここに予定を入力' rows="2" required maxlength="50" ></textarea>
+            <input type="file" name="name"accept='image/*' >
+            <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
+            <button class="button_add">追加</button>
+
+
+        </form>
+    </div>
+
+    {%if not schedule_list %}
+        <p style="font-size:44px">今すぐ予定を追加しよう</p>  
+    {%else%} 
+        <div class="container" >
+            {% for i in schedule_list %}
+                <div class="card" id="card-{{i[8]}}">
+
+                        <!--編集-->
+                        <div class="edit">
+                            <form method="POST" action="{{url_for('index')}}" enctype="multipart/form-data">
+                                <input type="hidden" name="action" value="edit">
+                                <input type="hidden" name="row" value="{{ i[8] }}">
+                                <div class="edit-date">
+                                    <div class="time">
+                                        <select size="1"  name="year"  data-value="{{i[0]}}"  required></select>年
+                                        <select size="1" name="month" data-value="{{i[1]}}"   ></select>月
+                                        <select size="1" name="day"  data-value="{{i[2]}}" ></select>日
+                                    </div>
+                               
+                                    <div class="time"id='space'>
+                                        <select size="1" name="hour"  data-value="{{i[3]}}" ></select>:
+                                        <select size="1" name="minute"  data-value="{{i[4]}}" ></select>
+                                    </div>
+                                 </div>
+                                <textarea   name='event' placeholder='ここに予定を入力' rows="2" required maxlength="50" >{{i[5]}}</textarea>
+                                {% if i[6] %}
+                                    <img src="{{ url_for('static', filename=i[6]) }}" alt="予定の画像">
+
+                                {% endif %}
+                                <input type="file" name="name" accept='image/*' >
+                                <input type="hidden" name="current_name" value="{%if i[6]%}{{i[6]}}{%endif%}">
+                                <textarea name='title'  placeholder='画像のタイトルを入力'rows="2" maxlength="50">{{i[7]}}</textarea>
+                                <div class="button">
+                                        <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
+                                    <button type="submit"class='save' >保存</button>
+                                </div>
+                            </form>
+                            <!--削除-->
+                            <div class="delete">
+                                <form method="POST" action="{{url_for('index')}}">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="row" value="{{ i[8] }}">
+                                    <button type="submit" >削除</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    <!--表示画面--> 
+                        <div class="view">
+                            <div class="date">
+                                <p >{{i[0]}}年{{i[1]}}月{{i[2]}}日<span id="week-{{i[8]}}"></span> {{i[3]}}:{{i[4]}}</p>
+                            </div>
+                            <p class="event">{{i[5]}}</p>
+                            {% if i[6] %}
+                                <img src="{{ url_for('static', filename=i[6]) }}" alt="予定の画像">
+                            {% endif %}
+                            {% if i[6] and i[7] %}
+                                <p class="title">{{i[7]}}</p>
+                            {% endif %}
+                            <button class='edit_button'onclick="edit_func({{i[8]}})">編集</button>
+                        </div>
+                  
+                </div>
+            {% endfor %}
+        </div> 
+    {% endif %}
+    <script src="{{url_for('static',filename='index.js')}}"></script>
+</body>
+</html>
