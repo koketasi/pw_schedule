@@ -92,7 +92,9 @@ def index():
 
             case 'search':#　パスワード検索用
                 search_password=request.form.get('password')
-                search_response=supabase.table('schedule').select('*').eq('password',search_password).execute()
+                if search_password:# noneをハッシュ化しないため
+                    search_key=hashlib.sha256(search_password.encode()).hexdigest()
+                search_response=supabase.table('schedule').select('*').eq('password',search_key).execute()
                 search_row_list=search_response.data
                 search_schedule_list=[
                     (
