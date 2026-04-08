@@ -1,7 +1,7 @@
 # 画像も加えられる共有スケジュール管理アプリ
 **カード型で予定を管理できるWebアプリ**
 
-[実際のウェブアプリ](https://original-schedule-app.onrender.com/)
+[実際のウェブアプリ](https://password-schedule.onrender.com/)
 
 ## 制作背景
 Pythonを学ぶ過程で実際に動くものを作ると技術が身につくと思い、

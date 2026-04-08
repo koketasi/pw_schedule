@@ -5,6 +5,8 @@ from werkzeug.utils import secure_filename
 from supabase import create_client
 import os
 import hashlib
+#import sqlite3
+
 URL= os.environ.get('SUPABASE_URL')
 KEY= os.environ.get('SUPABASE_KEY')
 supabase = create_client(URL, KEY)
@@ -81,12 +83,13 @@ def index():
 
                 return redirect(url_for('index'))
 
-            case 'delete': #削除
-                row=request.form['row']
-                #con=sqlite3.connect(database)
+            case 'delete': #削除 
+                    #con=sqlite3.connect(database)
                 #con.execute('DELETE FROM schedule  WHERE  rowid=?',(row,))
                 #con.commit()
                 #con.close()
+                row=request.form['row']
+           
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
                 return redirect(url_for('index'))
 
