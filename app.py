@@ -54,7 +54,8 @@ def index():
                 #    con.execute('INSERT INTO schedule (year,month,day,hour,minute,event,file_name,file_title)VALUES(?,?,?,?,?,?,?,?)',[year,month,day,hour,miute,event,file_name,file_title])
                 #    con.commit()
                 supabase.table('schedule').insert({
-                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,'event':event,'file_name':file_name,'file_title':file_title,'password':key
+                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
+                    'event':event,'file_name':file_name,'file_title':file_title,'password':key
                   }).execute()
                 return redirect(url_for('index'))
 
@@ -78,7 +79,8 @@ def index():
            #         con.execute('UPDATE schedule SET year=?,month=?,day=?,hour=?,minute=?,event=?,file_name=?,file_title=? WHERE rowid=?',[year,month,day,hour,miute,event,current_name,file_title,row])
             #        con.commit()
                 supabase.table('schedule').update({
-                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,'event':event,'file_name':current_name,'file_title':file_title
+                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
+                    'event':event,'file_name':current_name,'file_title':file_title
                 }).eq('id',int(row)).execute()
 
                 return redirect(url_for('index'))
