@@ -1,6 +1,5 @@
 
-import requests
-
+import httpx
 from supabase import create_client
 import os
 from datetime import datetime
@@ -34,7 +33,7 @@ def notify():
             'content':f'スケジュールWEBアプリの通知です\n{schedule["hour"]}:{schedule["minute"]}\n{schedule["event"]}'
         }
         try:
-            response2=requests.post(webhook_url,json=message)
+            response2=httpx.post(webhook_url,json=message)
             if 200<=response2.status_code<300:
                 print(f'成功')    
             else:
