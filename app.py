@@ -158,7 +158,7 @@ def notification():
         notify()
         time.sleep(60)
 
-threading.Thread(target=notification(), daemon=True).start()#並行処理するため
+threading.Thread(target=notification, daemon=True).start()#並行処理するため
 if __name__ == "__main__":
     
    
