@@ -45,6 +45,5 @@ def notify():
                 print(f'通知エラー{e}')
 
 if __name__=='__main__':
-    while True:
         notify()
-        time.sleep(300)
+        

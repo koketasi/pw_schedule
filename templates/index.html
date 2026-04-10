@@ -22,10 +22,10 @@
                 <select size="1" name="hour"  ></select>:
                 <select size="1" name="minute" ></select>
             </div>
-            <textarea class='text'  name='event' placeholder='ここに予定を入力' rows="2" required maxlength="50" ></textarea>
+            <textarea class='text'  name='event' placeholder='予定を入力' rows="2" required maxlength="50" ></textarea>
             <input type="file" name="name"accept='image/*' >
             <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
-            <textarea name="webhook_url" ></textarea>
+            <textarea name="webhook_url" placeholder="ウェブフックURL" ></textarea>
             <button class="button_add">追加</button>
 
 
@@ -62,7 +62,7 @@
                                         <select size="1" name="minute"  data-value="{{i[4]}}" ></select>
                                     </div>
                                  </div>
-                                <textarea   name='event' placeholder='ここに予定を入力' rows="2" required maxlength="50" >{{i[5]}}</textarea>
+                                <textarea   name='event' placeholder='予定を入力' rows="2" required maxlength="50" >{{i[5]}}</textarea>
                                 {% if i[6] %}
                                     <img src="{{ url_for('static', filename=i[6]) }}" alt="予定の画像">
 
