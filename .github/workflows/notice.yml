@@ -21,6 +21,7 @@ steps:
     run: pip install -r requirements.txt
 
   - name: Run
-    env: SUPABASE_URL: ${{secrets.SUPABASE_URL}}
-      SUPABASE_SERVICE_KEY: ${{secrets.SUPABASE_SERVICE_KEY}}
+    env: 
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
     run: python notify.py
