@@ -4,6 +4,7 @@ from supabase import create_client
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo 
+import time
 
 URL= os.environ.get('SUPABASE_URL')
 KEY= os.environ.get('SUPABASE_KEY')
@@ -44,4 +45,6 @@ def notify():
                 print(f'通知エラー{e}')
 
 if __name__=='__main__':
-    notify()
+    while True:
+        notify()
+        time.sleep(300)
