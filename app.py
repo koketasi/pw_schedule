@@ -58,7 +58,7 @@ def index():
                 #    con.commit()
                 supabase.table('schedule').insert({
                     'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
-                    'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url:':webhook_url
+                    'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
                   }).execute()
                 return redirect(url_for('index'))
 
