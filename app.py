@@ -48,14 +48,14 @@ def index():
                 password=request.form.get('password')
                 if password:# noneをハッシュ化しないため
                     key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
-
+                webhook_url=request.form.get('webhook_url')
 
                 #with sqlite3.connect(database) as con:
                 #    con.execute('INSERT INTO schedule (year,month,day,hour,minute,event,file_name,file_title)VALUES(?,?,?,?,?,?,?,?)',[year,month,day,hour,miute,event,file_name,file_title])
                 #    con.commit()
                 supabase.table('schedule').insert({
                     'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
-                    'event':event,'file_name':file_name,'file_title':file_title,'password':key
+                    'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url:':webhook_url
                   }).execute()
                 return redirect(url_for('index'))
 
@@ -103,17 +103,18 @@ def index():
                 search_row_list=search_response.data
                 search_schedule_list=[
                     (
-                        row['year'],
-                        row['month'],
-                        row['day'],
-                        row['hour'],
-                        row['minute'],
-                        row['event'],
-                        row['file_name'],
-                        row['file_title'],
-                        row['id'],
-                        row['password']
-                    )for row in search_row_list
+                        schedule['year'],
+                        schedule['month'],
+                        schedule['day'],
+                        schedule['hour'],
+                        schedule['minute'],
+                        schedule['event'],
+                        schedule['file_name'],
+                        schedule['file_title'],
+                        schedule['id'],
+                        schedule['password']
+
+                    )for schedule in search_row_list
                 ]
                 return render_template("index.html",schedule_list=search_schedule_list)
 
@@ -126,17 +127,17 @@ def index():
     row_list=response.data
     schedule_list=[
         (
-            row['year'],
-            row['month'],
-            row['day'],
-            row['hour'],
-            row['minute'],
-            row['event'],
-            row['file_name'],
-            row['file_title'],
-            row['id']
+            schedule['year'],
+            schedule['month'],
+            schedule['day'],
+            schedule['hour'],
+            schedule['minute'],
+            schedule['event'],
+            schedule['file_name'],
+            schedule['file_title'],
+            schedule['id']
 
-        )for row in row_list
+        )for schedule in row_list
     ]
     
   
