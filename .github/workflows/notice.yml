@@ -2,7 +2,7 @@ name: notification of schedule
 
 on: #実行するタイミング
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
