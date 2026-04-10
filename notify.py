@@ -4,7 +4,6 @@ from supabase import create_client
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo 
-import time
 
 URL= os.environ.get('SUPABASE_URL')
 KEY= os.environ.get('SUPABASE_KEY')
