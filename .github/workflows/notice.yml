@@ -23,6 +23,6 @@ jobs:
       - name: Run
         env: 
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
         run: python notify.py
