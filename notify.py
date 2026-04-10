@@ -27,19 +27,21 @@ def notify():
         return
     
     for schedule in schedule_list:
+        webhook_url=None
         webhook_url=schedule.get('webhook_url')
-    if webhook_url:
-        message={
-            'content':f'スケジュールWEBアプリの通知です\n{schedule["hour"]}:{schedule["minute"]}\n{schedule["event"]}'
-        }
-        try:
-            response2=httpx.post(webhook_url,json=message)
-            if 200<=response2.status_code<300:
-                print(f'成功')    
-            else:
-                print(f'失敗{response2.status_code}')
-        except Exception as e:
-            print(f'通知エラー{e}')
+    
+        if webhook_url:
+            message={
+                'content':f'スケジュールWEBアプリの通知です\n{schedule["hour"]}:{schedule["minute"]}\n{schedule["event"]}'
+            }
+            try:
+                response2=httpx.post(webhook_url,json=message)
+                if 200<=response2.status_code<300:
+                    print(f'成功')    
+                else:
+                    print(f'失敗{response2.status_code}')
+            except Exception as e:
+                print(f'通知エラー{e}')
 
 if __name__=='__main__':
     notify()
