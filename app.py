@@ -45,9 +45,12 @@ def index():
                     file_name=secure_filename(file.filename)
                     file.save(Path(__file__).parent /"static"/ file_name)
 
+                
                 password=request.form.get('password')
                 if password:# noneをハッシュ化しないため
                     key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
+                else:
+                    key=None
                 webhook_url=request.form.get('webhook_url')
 
                 #with sqlite3.connect(database) as con:
@@ -96,9 +99,13 @@ def index():
                 return redirect(url_for('index'))
 
             case 'search':#　パスワード検索用
+                
                 search_password=request.form.get('password')
                 if search_password:# noneをハッシュ化しないため
                     search_key=hashlib.sha256(search_password.encode()).hexdigest()
+                else:
+                    search_key=None
+
                 search_response=supabase.table('schedule').select('*').eq('password',search_key).execute()
                 search_row_list=search_response.data
                 search_schedule_list=[
