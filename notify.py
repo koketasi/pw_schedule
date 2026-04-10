@@ -10,7 +10,7 @@ KEY= os.environ.get('SUPABASE_KEY')
 supabase = create_client(URL, KEY)
 
 def notify():
-    now =datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
+    now =datetime.now(ZoneInfo("Asia/Tokyo"))
     current_year=str(now.year)
     current_month=str(now.month)
     current_day=str(now.day)
