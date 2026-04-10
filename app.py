@@ -5,6 +5,9 @@ from werkzeug.utils import secure_filename
 from supabase import create_client
 import os
 import hashlib
+from notify import notify
+import time
+import threading
 #import sqlite3
 
 URL= os.environ.get('SUPABASE_URL')
@@ -150,6 +153,12 @@ def index():
   
     return render_template("index.html",schedule_list=schedule_list)
 
+def notification():
+    while True:
+        notify()
+        time.sleep(60)
+
+threading.Thread(target=notification(), daemon=True).start()#並行処理するため
 if __name__ == "__main__":
     
    

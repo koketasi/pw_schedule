@@ -33,7 +33,7 @@ def notify():
     
         if webhook_url:
             message={
-                'content':f'スケジュールWEBアプリの通知です\n{schedule["hour"]}:{schedule["minute"]}\n{schedule["event"]}'
+                'content':f'スケジュールWEBアプリからの通知です\n{schedule["hour"]}:{schedule["minute"]}\n{schedule["event"]}'
             }
             try:
                 response2=httpx.post(webhook_url,json=message)
