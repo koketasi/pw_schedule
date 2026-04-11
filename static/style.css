@@ -23,7 +23,7 @@ body{
 
     background-color: white;
     width:100%;
-    min-height: 15%;
+    min-height: 300px;
     padding:1rem;
     border:rgb(243, 62, 62) solid 10px ;
     border-radius: 10px;
