@@ -32,13 +32,15 @@
 
 
         </form>
-        <form method="POST" action="{{url_for('index')}}">
-            <input type="hidden" name="action" value="search">
-            <input type="password" name="password" placeholder="パスワードを入力" required>
-        
-            <button type="submit">検索</button>
-        </form>
-        <button onclick="location.href='/'">リセット</button>
+        <div class="search">
+            <form method="POST" action="{{url_for('index')}}">
+                <input type="hidden" name="action" value="search">
+                <input type="password" name="password" placeholder="パスワードを入力" required>
+            
+                <button class="button_search" type="submit">検索</button>
+            </form>
+        </div>
+        <button class='reset' onclick="location.href='/'">検索リセット</button>
 
     </div>
 

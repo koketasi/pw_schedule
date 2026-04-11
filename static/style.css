@@ -135,6 +135,37 @@ div.time{
     padding: 3px;
    margin-right: 5px;
 }
+div.search{
+    border:solid 4px rgba(0, 101, 253, 0.71);
+    margin:10px;
+    padding: 5px;
+} 
+.button_search{
+    cursor:pointer;
+   
+    font-size: 8px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px; 
+    background-color: rgb(55, 115, 255);
+    color: white;
+}
+.button_search:hover{
+    background-color: rgb(40, 86, 193);
+}
+.reset{
+    cursor:pointer;
+    font-size: 8px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px; 
+    background-color: rgba(101, 101, 101, 0.681);
+    color: rgb(29, 29, 29);
+
+}
+
 
 
 
