@@ -136,10 +136,14 @@ div.time{
    margin-right: 5px;
 }
 div.search{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
     border:solid 4px rgba(0, 102, 255, 0.368);
-    border-radius: 5px;
+    border-radius: 10px;
     margin:10px;
-    padding: 5px;
+    padding: 10px;
     display: inline-block;  /* ← 横幅が中身サイズになる */
 
 } 
@@ -171,8 +175,7 @@ div.search{
 
 }
 .reset:hover{
-    background-color: rgba(142, 142, 142, 0.526);
-    
+    background-color: rgba(142, 142, 142, 0.526);    
 }
 
 
@@ -342,6 +345,7 @@ div.search{
     }
 
     div.time {
+        margin-bottom:5px ;
         padding: 2px;
         margin-right: 3px;
     }
