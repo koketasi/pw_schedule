@@ -12,7 +12,7 @@
 
         <form method="POST" action="{{url_for('index')}}" enctype="multipart/form-data">
             <input type="hidden" name="action" value="add">
-            <input class='password'type='password'name="password" placeholder="パスワードを入力">
+            
             <div class="time">
                 <select size="1"  name="year"  required></select>年
                 <select size="1" name="month"  ></select>月
@@ -26,6 +26,7 @@
             <input type="file" name="name"accept='image/*' >
             <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
             <textarea name="webhook_url" placeholder="ウェブフックURL" ></textarea>
+            <input class='password'type='password'name="password" placeholder="パスワードを入力">
             <button class="button_add">追加</button>
 
 
@@ -71,6 +72,7 @@
                                 <input type="hidden" name="current_name" value="{%if i[6]%}{{i[6]}}{%endif%}">
                                 <textarea name='title'  placeholder='画像のタイトルを入力'rows="2" maxlength="50">{{i[7]}}</textarea>
                                 <textarea name="webhook_url" placeholder="ウェブフックURL" >{{i[9]}}</textarea>
+                                <input type="password" name="password" placeholder="パスワードを入力">
                                 <div class="button">
                                         <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
                                     <button type="submit"class='save' >保存</button>

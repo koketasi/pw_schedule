@@ -47,13 +47,13 @@ def index():
                     file_name=secure_filename(file.filename)
                     file.save(Path(__file__).parent /"static"/ file_name)
 
-                
+                webhook_url=request.form.get('webhook_url')
                 password=request.form.get('password')
                 if password:# noneをハッシュ化しないため
                     key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
                 else:
                     key=None
-                webhook_url=request.form.get('webhook_url')
+                
 
                 #with sqlite3.connect(database) as con:
                 #    con.execute('INSERT INTO schedule (year,month,day,hour,minute,event,file_name,file_title)VALUES(?,?,?,?,?,?,?,?)',[year,month,day,hour,miute,event,file_name,file_title])
@@ -84,10 +84,20 @@ def index():
            #         con.execute('UPDATE schedule SET year=?,month=?,day=?,hour=?,minute=?,event=?,file_name=?,file_title=? WHERE rowid=?',[year,month,day,hour,miute,event,current_name,file_title,row])
             #        con.commit()
                 webhook_url=request.form.get('webhook_url')
-                supabase.table('schedule').update({
-                    'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
-                    'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
-                }).eq('id',int(row)).execute()
+                password=request.form.get('password')
+                
+                if password:# noneをハッシュ化しないため
+                    key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
+                    
+                    supabase.table('schedule').update({
+                        'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
+                        'event':event,'file_name':current_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
+                    }).eq('id',int(row)).execute()
+                else:#入力がないならpasswordのカラムを変更しない
+                    supabase.table('schedule').update({
+                        'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
+                        'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
+                    }).eq('id',int(row)).execute()
 
                 return redirect(url_for('index'))
 
@@ -122,7 +132,7 @@ def index():
                         schedule['file_name'],
                         schedule['file_title'],
                         schedule['id'],
-                        schedule['password']
+                        schedule['webhook_url']
 
                     )for schedule in search_row_list
                 ]
