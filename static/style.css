@@ -18,12 +18,11 @@ body{
 .add{
   
 
-   display: flex;
-   flex-direction: column;
+  position: relative;
 
     background-color: white;
     width:100%;
-    min-height: 300px;
+    min-height: 15%;
     padding:1rem;
     border:rgb(243, 62, 62) solid 10px ;
     border-radius: 10px;
@@ -169,9 +168,9 @@ div.time{
 
 .reset{
    
-    align-self: flex-start; /* 左寄せ */
-    margin-top: auto;       /* 下に押し込む */
-
+   position: absolute;
+   left: 12px;
+   bottom: 12px;
     cursor:pointer;
     font-size: 10px;
     font-weight: 500;
