@@ -27,7 +27,7 @@
             <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
             <textarea name="webhook_url" placeholder="ウェブフックURL" ></textarea>
             <input class='password'type='password'name="password" placeholder="パスワードを入力">
-            <input type="hidden" name="search_key" value="{{search_key}}">
+            <input type="hidden" name="search_key" value="{{search_key or ''}}">
             <button class="button_add">追加</button>
 
 
@@ -77,7 +77,7 @@
                                 <textarea name='title'  placeholder='画像のタイトルを入力'rows="2" maxlength="50">{{i[7]}}</textarea>
                                 <textarea name="webhook_url" placeholder="ウェブフックURL" >{{i[9]}}</textarea>
                                 <input type="password" name="password" placeholder="パスワードを入力" >
-                                <input type="hidden" name="search_key" value="{{search_key}}">
+                                <input type="hidden" name="search_key" value="{{search_key or ''}}">
                                 <div class="button">
                                     <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
                                     <button type="submit"class='save' >保存</button>
@@ -88,7 +88,7 @@
                                 <form method="POST" action="{{url_for('index')}}">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="row" value="{{ i[8] }}">
-                                    <input type="hidden" name="search_key" value="{{search_key}}">
+                                    <input type="hidden" name="search_key" value="{{search_key or ''}}">
                                     <button type="submit" >削除</button>
                                 </form>
                             </div>
