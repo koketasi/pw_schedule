@@ -143,7 +143,7 @@ div.time{
 
     border:solid 4px rgba(0, 102, 255, 0.368);
     border-radius: 10px;
-    margin:10px;
+    margin: 10px auto; /*上下10px*/
     padding: 10px;
     width: fit-content; /* ←横幅が中身サイズになる */
 
