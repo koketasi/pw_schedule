@@ -152,6 +152,7 @@ div.search{
     padding: 8px 15px; 
     background-color: rgb(55, 115, 255);
     color: white;
+    border-radius: 5px;
 }
 .button_search:hover{
     background-color: rgb(40, 86, 193);
@@ -165,9 +166,13 @@ div.search{
     padding: 8px 15px; 
     background-color: rgba(212, 212, 212, 0.681);
     color: rgb(29, 29, 29);
+    box-shadow: 0 0 3px rgb(181, 181, 181);
 
 }
-
+.reset:hover{
+    background-color: rgba(164, 164, 164, 0.526);
+    
+}
 
 
 
@@ -215,7 +220,11 @@ div.search{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
+.edit input[type='password']{
+    width:100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .button{
     display: flex;
     gap: 10px;
