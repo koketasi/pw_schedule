@@ -145,7 +145,7 @@ div.time{
     border-radius: 10px;
     margin:10px;
     padding: 10px;
-     /* ← 横幅が中身サイズになる */
+    width: fit-content; /* ←横幅が中身サイズになる */
 
 } 
 .button_search{
