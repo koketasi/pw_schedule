@@ -63,7 +63,7 @@ def index():
                     'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
                   }).execute()
                 
-                if search_key=='None':#Noneを文字として受け取るから
+                if search_key!='None':#Noneを文字として受け取るから
                     return redirect(url_for('index',search=search_key))
                 else:
                     return redirect(url_for('index'))
@@ -105,7 +105,7 @@ def index():
                         'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
 
-                if search_key=='None':#Noneを文字として受け取るから
+                if search_key!='None':#Noneを文字として受け取るから
                     return redirect(url_for('index',search=search_key))
                 else:
                     return redirect(url_for('index'))
@@ -120,7 +120,7 @@ def index():
 
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
 
-                if search_key=='None':#Noneを文字として受け取るから
+                if search_key!='None':#Noneを文字として受け取るから
                     return redirect(url_for('index',search=search_key))
                     
                 else:
@@ -144,7 +144,7 @@ def index():
     #con.close()
 
     search_key = request.args.get('search')
-    if search_key=='None':#Noneを文字として受け取るから
+    if search_key!='None':#Noneを文字として受け取るから
         response=supabase.table('schedule').select('*').eq('password',search_key).execute()
 
     else:
