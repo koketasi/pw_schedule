@@ -306,7 +306,7 @@ div.time{
     .time select {
         font-size: 0.85rem;
         padding: 2px;
-        margin: 2px;
+        margin: 5px;
     }
 
     .edit_button {
