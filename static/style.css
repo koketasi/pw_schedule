@@ -1,7 +1,7 @@
 
 
 body{
-    background-color: rgb(235, 237, 255);
+    background-color: rgb(231, 232, 241);
     font-family:"ヒラギノ角ゴ ProN",'メイリオ',sans-serif;
     min-height:100vh;
     height: 100vh;
@@ -135,11 +135,12 @@ div.time{
     padding: 3px;
    margin-right: 5px;
 }
-div.search{
+.search form{
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
     align-items: center;
+
     border:solid 4px rgba(0, 102, 255, 0.368);
     border-radius: 10px;
     margin:10px;
@@ -162,6 +163,7 @@ div.search{
 .button_search:hover{
     background-color: rgb(40, 86, 193);
 }
+
 .reset{
     cursor:pointer;
     font-size: 15px;
