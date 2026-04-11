@@ -62,8 +62,9 @@ def index():
                     'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                     'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
                   }).execute()
+                
                 if search_key:
-                    return redirect(url_for('index',search_key=search_key))
+                    return redirect(url_for('index',search=search_key))
                 else:
                     return redirect(url_for('index'))
 
@@ -103,10 +104,11 @@ def index():
                         'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                         'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
+
                 if search_key:
-                    return redirect(url_for('index'))
-                else:
                     return redirect(url_for('index',search=search_key))
+                else:
+                    return redirect(url_for('index'))
 
             case 'delete': #削除 
                     #con=sqlite3.connect(database)
@@ -117,10 +119,12 @@ def index():
                 search_key=request.form.get('search_key')
 
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
+                
                 if search_key:
-                    return redirect(url_for('index'))
-                else:
                     return redirect(url_for('index',search=search_key))
+                    
+                else:
+                    return redirect(url_for('index'))
 
             case 'search':#　パスワード検索用
                 
