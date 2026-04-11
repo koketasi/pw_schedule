@@ -49,12 +49,12 @@ def index():
 
                 webhook_url=request.form.get('webhook_url')
                 password=request.form.get('password')
+                search_key=request.form.get('search_key')
+
                 if password:# noneをハッシュ化しないため
                     key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
                 else:
                     key=None
-                
-
                 #with sqlite3.connect(database) as con:
                 #    con.execute('INSERT INTO schedule (year,month,day,hour,minute,event,file_name,file_title)VALUES(?,?,?,?,?,?,?,?)',[year,month,day,hour,miute,event,file_name,file_title])
                 #    con.commit()
@@ -62,7 +62,10 @@ def index():
                     'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                     'event':event,'file_name':file_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
                   }).execute()
-                return redirect(url_for('index'))
+                if search_key:
+                    return redirect(url_for('index',search_key=search_key))
+                else:
+                    return redirect(url_for('index'))
 
             case 'edit': #編集
                 row=request.form['row']
@@ -100,8 +103,10 @@ def index():
                         'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                         'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
-
-                return redirect(url_for('index',search=search_key))
+                if search_key:
+                    return redirect(url_for('index'))
+                else:
+                    return redirect(url_for('index',search=search_key))
 
             case 'delete': #削除 
                     #con=sqlite3.connect(database)
@@ -112,7 +117,10 @@ def index():
                 search_key=request.form.get('search_key')
 
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
-                return redirect(url_for('index',search=search_key))
+                if search_key:
+                    return redirect(url_for('index'))
+                else:
+                    return redirect(url_for('index',search=search_key))
 
             case 'search':#　パスワード検索用
                 
@@ -122,8 +130,6 @@ def index():
                 else:
                     search_key=None
 
-
-                
                 return redirect(url_for('index', search=search_key))
                 #return render_template("index.html",schedule_list=search_schedule_list,search_key=search_key)#search_keyは暗号化されてる
 
