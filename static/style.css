@@ -96,6 +96,7 @@ textarea:focus{
     padding: 8px 15px; 
     background-color: rgb(55, 115, 255);
     color: white;
+  
 }
 .button_add:hover{
     background-color: rgb(40, 86, 193);
@@ -165,12 +166,16 @@ div.time{
 }
 
 .reset{
+   
+    align-self: flex-start; /* 左寄せ */
+    margin-top: auto;       /* 下に押し込む */
+
     cursor:pointer;
-    font-size: 15px;
+    font-size: 10px;
     font-weight: 500;
     border: none;
     border-radius: 5px;
-    padding: 8px 15px; 
+    padding: 4px 7.5px; 
     background-color: rgba(212, 212, 212, 0.681);
     color: rgba(29, 29, 29, 0.682);
     box-shadow: 0 0 3px rgb(141, 141, 141);
