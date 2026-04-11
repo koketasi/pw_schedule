@@ -33,11 +33,13 @@
         </form>
         <form method="POST" action="{{url_for('index')}}">
             <input type="hidden" name="action" value="search">
-            <input type="password" name="password" placeholder="パスワードを入力">
+            <input type="password" name="password" placeholder="パスワードを入力" required>
         
             <button type="submit">検索</button>
         </form>
-        <button onclick="location.reload()">再読み込み</button>
+        <button onclick="location.href='/'">リセット</button>
+
+        <a href="/" >リセット</a>
     </div>
 
     {%if not schedule_list %}
@@ -73,9 +75,10 @@
                                 <input type="hidden" name="current_name" value="{%if i[6]%}{{i[6]}}{%endif%}">
                                 <textarea name='title'  placeholder='画像のタイトルを入力'rows="2" maxlength="50">{{i[7]}}</textarea>
                                 <textarea name="webhook_url" placeholder="ウェブフックURL" >{{i[9]}}</textarea>
-                                <input type="password" name="password" placeholder="パスワードを入力">
+                                <input type="password" name="password" placeholder="パスワードを入力" >
+                                <input type="hidden" name="search_key" value="{{search_key}}">
                                 <div class="button">
-                                        <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
+                                    <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
                                     <button type="submit"class='save' >保存</button>
                                 </div>
                             </form>
@@ -84,6 +87,7 @@
                                 <form method="POST" action="{{url_for('index')}}">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="row" value="{{ i[8] }}">
+                                    <input type="hidden" name="search_key" value="{{search_key}}">
                                     <button type="submit" >削除</button>
                                 </form>
                             </div>

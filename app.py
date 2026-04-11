@@ -85,7 +85,8 @@ def index():
             #        con.commit()
                 webhook_url=request.form.get('webhook_url')
                 password=request.form.get('password')
-                
+                search_key=request.form.get('search_key')
+
                 if password:# noneをハッシュ化しないため
                     key=hashlib.sha256(password.encode()).hexdigest()#encodeでバイトにして、hashlib.sha256でハッシュ化、最後に16進数にする
                     
@@ -93,13 +94,14 @@ def index():
                         'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                         'event':event,'file_name':current_name,'file_title':file_title,'password':key,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
+
                 else:#入力がないならpasswordのカラムを変更しない
                     supabase.table('schedule').update({
                         'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
                         'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
 
-                return redirect(request.url)
+                return redirect(url_for('index',search=search_key))
 
             case 'delete': #削除 
                     #con=sqlite3.connect(database)
@@ -107,9 +109,10 @@ def index():
                 #con.commit()
                 #con.close()
                 row=request.form['row']
-           
+                search_key=request.form.get('search_key')
+
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
-                return redirect(request.url)
+                return redirect(url_for('index',search=search_key))
 
             case 'search':#　パスワード検索用
                 
@@ -119,31 +122,24 @@ def index():
                 else:
                     search_key=None
 
-                search_response=supabase.table('schedule').select('*').eq('password',search_key).execute()
-                search_row_list=search_response.data
-                search_schedule_list=[
-                    (
-                        schedule['year'],
-                        schedule['month'],
-                        schedule['day'],
-                        schedule['hour'],
-                        schedule['minute'],
-                        schedule['event'],
-                        schedule['file_name'],
-                        schedule['file_title'],
-                        schedule['id'],
-                        schedule['webhook_url']
 
-                    )for schedule in search_row_list
-                ]
-                return render_template("index.html",schedule_list=search_schedule_list)
+                
+                return redirect(url_for('index', search=search_key))
+                #return render_template("index.html",schedule_list=search_schedule_list,search_key=search_key)#search_keyは暗号化されてる
 
 
     #con=sqlite3.connect(database)
    
     #schedule_list=con.execute('SELECT year,month,day,hour,minute,event,file_name,file_title,rowid from schedule where event is not NULL').fetchall()
     #con.close()
-    response=supabase.table('schedule').select('*').not_.is_('event','null').is_('password','null').execute()
+
+    search_key = request.args.get('search')
+    if search_key:
+        response=supabase.table('schedule').select('*').eq('password',search_key).execute()
+
+    else:
+        response=supabase.table('schedule').select('*').not_.is_('event','null').is_('password','null').execute()
+
     row_list=response.data
     schedule_list=[
         (
@@ -162,7 +158,7 @@ def index():
     ]
     
   
-    return render_template("index.html",schedule_list=schedule_list)
+    return render_template("index.html",schedule_list=schedule_list,search_key=search_key)
 
 #def notification():
   #  while True:
