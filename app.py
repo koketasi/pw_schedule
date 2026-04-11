@@ -99,7 +99,7 @@ def index():
                         'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                     }).eq('id',int(row)).execute()
 
-                return redirect(url_for('index'))
+                return redirect(request.url)
 
             case 'delete': #削除 
                     #con=sqlite3.connect(database)
@@ -109,7 +109,7 @@ def index():
                 row=request.form['row']
            
                 supabase.table('schedule').delete().eq('id',int(row)).execute()
-                return redirect(url_for('index'))
+                return redirect(request.url)
 
             case 'search':#　パスワード検索用
                 
