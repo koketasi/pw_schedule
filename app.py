@@ -6,8 +6,7 @@ from supabase import create_client
 import os
 import hashlib
 #from notify import notify
-import time
-import threading
+
 #import sqlite3
 
 URL= os.environ.get('SUPABASE_URL')
@@ -84,9 +83,10 @@ def index():
           #      with sqlite3.connect(database) as con:
            #         con.execute('UPDATE schedule SET year=?,month=?,day=?,hour=?,minute=?,event=?,file_name=?,file_title=? WHERE rowid=?',[year,month,day,hour,miute,event,current_name,file_title,row])
             #        con.commit()
+                webhook_url=request.form.get('webhook_url')
                 supabase.table('schedule').update({
                     'year':year,'month':month,'day':day,'hour':hour,'minute':miute,
-                    'event':event,'file_name':current_name,'file_title':file_title
+                    'event':event,'file_name':current_name,'file_title':file_title,'webhook_url':webhook_url
                 }).eq('id',int(row)).execute()
 
                 return redirect(url_for('index'))
@@ -145,7 +145,8 @@ def index():
             schedule['event'],
             schedule['file_name'],
             schedule['file_title'],
-            schedule['id']
+            schedule['id'],
+            schedule['webhook_url']
 
         )for schedule in row_list
     ]

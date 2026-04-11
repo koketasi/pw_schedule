@@ -70,6 +70,7 @@
                                 <input type="file" name="name" accept='image/*' >
                                 <input type="hidden" name="current_name" value="{%if i[6]%}{{i[6]}}{%endif%}">
                                 <textarea name='title'  placeholder='画像のタイトルを入力'rows="2" maxlength="50">{{i[7]}}</textarea>
+                                <textarea name="webhook_url" placeholder="ウェブフックURL" >{{i[9]}}</textarea>
                                 <div class="button">
                                         <button type='button'class='cancel'onclick="view_func({{i[8]}})">キャンセル</button>
                                     <button type="submit"class='save' >保存</button>
