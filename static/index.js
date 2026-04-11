@@ -13,7 +13,7 @@ const now=new Date();
 const year_current=now.getFullYear();
 const month_current=now.getMonth()+1;
 const day_current=now.getDate();
-const minute_current=((Math.round(now.getMinutes()/5.0))*5)%60;
+const minute_current=now.getMinutes();
 const hour_current=now.getHours();
 const week=['日','月','火','水','木','金','土'];
 
@@ -85,7 +85,12 @@ hours.forEach((hour,index)=>{
         
     }
     if(index==0){
-        hour.value=hour_current;
+        if (55<=minute_current && minute_current<=59){
+            hour.value=hour_current+1;
+        }
+        else{
+            hour.value=hour_current;
+        }
     }
     else{
         hour.value =  Number(hour.getAttribute('data-value'));
