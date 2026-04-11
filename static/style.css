@@ -110,7 +110,7 @@ textarea:focus{
     background: transparent;
     cursor: pointer;
   
-    background-color:  rgba(179, 179, 179, 0.225);
+    background-color:  rgba(163, 164, 180, 0.225);
     font-size: 1rem;
     border-radius: 5px;
 }
@@ -130,7 +130,7 @@ div.edit-date {
 div.time{
     display: inline-block;
     width: auto;
-    background-color: rgba(154, 154, 154, 0.136);
+    background-color: rgba(139, 143, 161, 0.136);
     border-radius: 7px;
     padding: 3px;
    margin-right: 5px;
@@ -145,7 +145,7 @@ div.time{
     border-radius: 10px;
     margin:10px;
     padding: 10px;
-    display: inline-block;  /* ← 横幅が中身サイズになる */
+     /* ← 横幅が中身サイズになる */
 
 } 
 .button_search{
@@ -348,14 +348,14 @@ div.time{
 
     div.time {
         margin-bottom:5px ;
-        padding: 2px;
-        margin-right: 3px;
+       
+        margin-right: 2px;
     }
 
     .time select {
         font-size: 0.85rem;
         padding: 2px;
-        margin: 5px;
+        margin: 3px;
     }
 
     .edit_button {
