@@ -3,7 +3,7 @@
 
 [実際のウェブアプリ](https://password-schedule.onrender.com/)
 
-![使用例](static/スクリーンショット 2026-05-05 220344.png)
+![使用例](static/sc_2026-05-05.png)
 
 ## 制作背景
 Pythonを学ぶ過程で実際に動くものを作ると技術が身につくと思い、
