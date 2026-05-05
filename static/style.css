@@ -47,7 +47,7 @@ body{
     color:red;
     font-size: 0.8rem;
     border-radius: 5px;
-      font-weight: bold;
+    font-weight: bold;
 }
 
 input[type='file']{
@@ -84,8 +84,7 @@ textarea:hover{
 textarea:focus{
     border: none;
     outline: none;
-    box-shadow: 0 0 10px rgb(0, 101, 253);
- 
+    box-shadow: 0 0 10px rgb(0, 101, 253); 
 }
 .button_add{
     cursor:pointer;
@@ -207,8 +206,6 @@ div.time{
     flex-direction: column;
    
 }
-
-
 .card:hover{
     box-shadow:  0 2px 4px rgba(0,0,0,0.1),
                  0 8px 20px rgba(0,0,0,0.1);
@@ -306,7 +303,6 @@ div.time{
     color: white;
 
 }
-
 .edit{
     display: none;
 }

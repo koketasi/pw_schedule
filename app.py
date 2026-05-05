@@ -6,7 +6,6 @@ from supabase import create_client
 import os
 import hashlib
 #from notify import notify
-
 #import sqlite3
 
 URL= os.environ.get('SUPABASE_URL')

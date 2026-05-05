@@ -22,9 +22,9 @@
                 <select size="1" name="hour"  ></select>:
                 <select size="1" name="minute" ></select>
             </div>
-            <textarea class='text'  name='event' placeholder='予定を入力' rows="2" required maxlength="50" ></textarea>
+            <textarea class='text'  name='event' placeholder='予定を入力' rows="5" required maxlength="200" ></textarea>
             <input type="file" name="name"accept='image/*' >
-            <textarea name='title' placeholder='画像のタイトルを入力' rows="2" maxlength="50"></textarea>
+            <textarea name='title' placeholder='画像のタイトルを入力' rows="5" maxlength="200"></textarea>
             <textarea name="webhook_url" placeholder="ウェブフックURL" ></textarea>
             <input class='password'type='password'name="password" placeholder="パスワードを入力">
             <input type="hidden" name="search_key" value="{{search_key or ''}}">

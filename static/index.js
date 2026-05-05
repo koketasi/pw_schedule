@@ -3,6 +3,7 @@ const edit_func=(rowid)=>{
     card.querySelector('.view').style.display='none';
     card.querySelector('.edit').style.display='block';
 }
+
 const view_func=(rowid)=>{
     const card=document.getElementById(`card-${rowid}`);
     card.querySelector('.edit').style.display='none';
@@ -17,15 +18,12 @@ const minute_current=now.getMinutes();
 const hour_current=now.getHours();
 const week=['日','月','火','水','木','金','土'];
 
-
-
 const years=document.querySelectorAll("select[name='year']");
 const months=document.querySelectorAll("select[name='month']");
 const days=document.querySelectorAll("select[name='day']");
 const hours=document.querySelectorAll("select[name='hour']");
 const minutes=document.querySelectorAll("select[name='minute']");
 const dates=document.querySelectorAll(".date");
-
 
 years.forEach((year,index)=>{
     for(let i=2026;i<=2070;i++){
